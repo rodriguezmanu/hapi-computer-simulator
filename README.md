@@ -48,5 +48,5 @@ main()
 
 #The Stack 
 This is what the stack should look like before the program gets executed. 
-
+Stack.png
   
