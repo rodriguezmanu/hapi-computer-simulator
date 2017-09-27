@@ -48,5 +48,7 @@ main()
 
 #The Stack 
 This is what the stack should look like before the program gets executed. 
-Stack.png
+
+![Image of The Stack]
+(https://github.com/deviget/backend-test/blob/master/Stack.png)
   
