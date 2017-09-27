@@ -10,7 +10,7 @@ Please implement your solution as a simple app using the main technology* common
 Code Review Interview 
 After you submit your solution, we'll invite you to visit us at TenTen for a code review interview. Please bring your laptop as we'll ask you to walk us through your code and explain how it works. TenTen engineers will ask you questions about your code, so be ready. Remember that the code review is not just a chance for us to see how well you communicate technical ideas and how solid your computer science background is, but at the same time, a great chance for you to meet the engineers you'll be working with, what we care about, and whether we're smart enough for you to want to work with us. So test us back! 
 
-Computer simulator 
+# Computer simulator 
 We want you to build a computer simulator that supports executing: 
 def print_tenten
 print(multiply(101, 10))
@@ -19,13 +19,13 @@ print(1009)
 print_tenten()
 # 1009 # 1010 
 
-Instructions 
+# Instructions 
 - `MULT`: Pop the 2 arguments from the stack, multiply them and push the result back to the stack - `CALL addr`: Set the program counter (PC) to `addr`
 - `RET`: Pop address from stack and set PC to address
 - `STOP`: Exit the program 
 - `PRINT`: Pop value from stack and print it - `PUSH arg`: Push argument to the stack 
 
-Interface 
+# Interface 
 The code should execute against: 
 PRINT_TENTEN_BEGIN = 50
 MAIN_BEGIN = 0
@@ -45,6 +45,8 @@ computer.insert("STOP")
 computer.set_address(MAIN_BEGIN).execute()
 end
 main() 
-The Stack 
+
+#The Stack 
 This is what the stack should look like before the program gets executed. 
+
   
