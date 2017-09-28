@@ -93,6 +93,7 @@ curl -XPOST you-app-server/v1/computers/{computer-id}/exec
 
 ## Deliverables we expect:
 
+* Pull request with the solution
 * URL where the app can be accessed and used (use any platform of your preference: heroku.com, aws.amazon.com, etc)
 * README file with the decisions taken and important notes
 
