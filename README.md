@@ -89,16 +89,15 @@ curl -XPOST you-app-server/v1/computers/{computer-id}/exec
 ## Forking Procedures
 
 1.  Fork the repo to your own github account
-2.  When you have code ready for pull request or to be reviewed/contributed by peers:
-    - `git push origin BRANCH_NAME`
-    - Then go to the main repository and create a pull request to the `staging` branch
+2.  When you have code ready to be review submit a pull request
 
 ## Deliverables we expect:
-* URL where the game can be accessed and played (use any platform of your preference: heroku.com, aws.amazon.com, etc)
-* Code in a public Github repo
+
+* URL where the app can be accessed and used (use any platform of your preference: heroku.com, aws.amazon.com, etc)
 * README file with the decisions taken and important notes
 
 # Time Spent
+
 You do not need to fully complete the challenge. We suggest not to spend more than 5 hours total, which can be done over the course of 2 days.  Please make commits as often as possible so we can see the time you spent and please do not make one commit.  We will evaluate the code and time spent.
  
 What we want to see is how well you handle yourself given the time you spend on the problem, how you think, and how you prioritize when time is insufficient to solve everything.
@@ -106,5 +105,3 @@ What we want to see is how well you handle yourself given the time you spend on 
 As soon as you have submitted your solution, we will review the code.
  
 Reply to ALL when you are finished. 
-
-
