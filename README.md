@@ -30,7 +30,8 @@ print_tenten() # prints 1010
 * `CALL addr`: Set the program counter (PC) to `addr`
 * `RET`: Pop address from stack and set PC to address
 * `STOP`: Exit the program 
-* `PRINT`: Pop value from stack and print it - `PUSH arg`: Push argument to the stack 
+* `PRINT`: Pop value from stack and print it 
+* `PUSH arg`: Push argument to the stack 
 
 # Interface 
 
