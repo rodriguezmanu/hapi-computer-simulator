@@ -29,7 +29,7 @@ whose output would be
 
 The code should execute against: 
 
-```
+```ruby
 PRINT_TENTEN_BEGIN = 50
 MAIN_BEGIN = 0
 def main
@@ -59,7 +59,7 @@ This is what the stack should look like before the program gets executed.
 
 The code should execute against these HTTP requests
 
-```
+```bash
 # Create new computer with a stack of 100 addresses
 curl -XPOST -d"{\"stack\":100}" you-app-server/v1/computers
 # Instructions for the print_tenten function
