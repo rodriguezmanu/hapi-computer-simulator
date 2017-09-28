@@ -61,27 +61,27 @@ The code should execute against these HTTP requests
 
 ```bash
 # Create new computer with a stack of 100 addresses
-curl -XPOST -d"{\"stack\":100}" you-app-server/v1/computers
+curl -XPOST -d'{"stack":100}' you-app-server/v1/computers
 # Instructions for the print_tenten function
-curl -XPATCH you-app-server/v1/computers/{computer-id}/addresses/50
-curl -XPOST you-app-server/v1/computers/{computer-id}/ops/MULT
-curl -XPOST you-app-server/v1/computers/{computer-id}/ops/PRINT
-curl -XPOST you-app-server/v1/computers/{computer-id}/ops/RET
+curl -XPATCH -d'{"addr: 50"}' you-app-server/v1/computers/{computer-id}/stack/pointer
+curl -XPOST you-app-server/v1/computers/{computer-id}/stack/insert/MULT
+curl -XPOST you-app-server/v1/computers/{computer-id}/stack/insert/PRINT
+curl -XPOST you-app-server/v1/computers/{computer-id}/stack/insert/RET
 # The start of the main function
-curl -XPATCH you-app-server/v1/computers/{computer-id}/addresses/0
-curl -XPOST -d"{\"arg\":1009}"you-app-server/v1/computers/{computer-id}/ops/PUSH
-curl -XPOST you-app-server/v1/computers/{computer-id}/ops/PRINT
+curl -XPATCH -d'{"addr: 0"}' you-app-server/v1/computers/{computer-id}/stack/pointer
+curl -XPOST -d'{"arg":1009}' you-app-server/v1/computers/{computer-id}/stack/insert/PUSH
+curl -XPOST you-app-server/v1/computers/{computer-id}/stack/insert/PRINT
 # Return address for when print_tenten function finishes
-curl -XPOST -d"{\"arg\":6}"you-app-server/v1/computers/{computer-id}/ops/PUSH
+curl -XPOST -d'{"arg":6}' you-app-server/v1/computers/{computer-id}/stack/insert/PUSH
 # Setup arguments and call print_tenten
-curl -XPOST -d"{\"arg\":101}"you-app-server/v1/computers/{computer-id}/ops/PUSH
-curl -XPOST -d"{\"arg\":10}"you-app-server/v1/computers/{computer-id}/ops/PUSH
-curl -XPOST -d"{\"addr\":50}"you-app-server/v1/computers/{computer-id}/ops/CALL
+curl -XPOST -d'{"arg":101}' you-app-server/v1/computers/{computer-id}/stack/insert/PUSH
+curl -XPOST -d'{"arg":10}' you-app-server/v1/computers/{computer-id}/stack/insert/PUSH
+curl -XPOST -d'{"addr":50}' you-app-server/v1/computers/{computer-id}/stack/insert/CALL
 # Stop the program
-curl -XPOST you-app-server/v1/computers/{computer-id}/ops/STOP
+curl -XPOST you-app-server/v1/computers/{computer-id}/stack/insert/STOP
 # Execute the program
-curl -XPATCH you-app-server/v1/computers/{computer-id}/addresses/0
-curl -XPOST you-app-server/v1/computers/{computer-id}/execution
+curl -XPATCH -d'{"addr":0}' you-app-server/v1/computers/{computer-id}/stack/pointer
+curl -XPOST you-app-server/v1/computers/{computer-id}/exec
 ```
 
 ## Purpose 
