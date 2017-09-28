@@ -86,6 +86,11 @@ curl -XPATCH -d'{"addr":0}' you-app-server/v1/computers/{computer-id}/stack/poin
 curl -XPOST you-app-server/v1/computers/{computer-id}/exec
 ```
 
+The following is a list of items (prioritized from most important to least important) we wish to see:
+* Implement a documented RESTful API for the app
+* Implement an SDK client for the API implemented above. Ideally, in a different language, of your preference, to the one used for the API
+* Unit Testing
+
 ## Forking Procedures
 
 1.  Fork the repo to your own github account
