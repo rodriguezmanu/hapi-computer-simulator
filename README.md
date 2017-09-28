@@ -90,7 +90,9 @@ curl -XPOST you-app-server/v1/computers/{computer-id}/exec
 
 1.  Fork the repo to your own github account
 2.  When you have code ready for pull request or to be reviewed/contributed by peers:
+
 git push origin BRANCH_NAME
+
 Then go to the main repository and create a pull request to the staging branch
 
 ## Deliverables we expect:
