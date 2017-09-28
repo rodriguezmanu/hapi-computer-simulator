@@ -6,8 +6,14 @@ We want you to build a computer simulator that supports executing:
 def print_tenten
   print(multiply(101, 10))
 end
-print(1009) # prints 1009 
-print_tenten() # prints 1010
+print(1009)
+print_tenten()
+```
+
+whose output would be
+```
+1009 
+1010
 ```
 
 ## Instructions 
