@@ -1,6 +1,8 @@
 # Computer simulator 
 
-We want you to build a computer simulator that supports executing: 
+We ask that you complete the following challenge to evaluate your development skills. Please use the programming language and framework discussed during your interview to accomplish the following task.
+
+## We want you to build a computer simulator that supports executing: 
 
 ```
 def print_tenten
@@ -84,14 +86,25 @@ curl -XPATCH -d'{"addr":0}' you-app-server/v1/computers/{computer-id}/stack/poin
 curl -XPOST you-app-server/v1/computers/{computer-id}/exec
 ```
 
-## Purpose 
+## Forking Procedures
 
-The assignment is deliberately not very precise and does not have a single correct solution. We're not looking for you to come up with any specific solution but are more interested to see how you interpret the assignment, what simplifying assumptions you make given the short time you have to work on it, how you architect your app, and what your coding style is. If in doubt as to which direction you should go, send us a quick note and ask (big bonus points for clarifying before jumping into coding!). Bonus points for doing proper error handling, adding unit tests, and commenting your code. The app should run and solve the problem, but no need to finish everything. Add TODOs and FIXMEs in places where you cut a corner for expediency but know a production ready version would need refactoring, additional tests or handling of certain edge cases that you know or suspect to exist but don't handle yet. Or, after you finish your first implementation and realize the architecture is not what it should have been. In that case don't waste time refactoring, but explain to us the problems you see and your proposed fix. 
+1.  Fork the repo to your own github account
+2.  When you have code ready for pull request or to be reviewed/contributed by peers:
+git push origin BRANCH_NAME
+Then go to the main repository and create a pull request to the staging branch
 
-## Submission of Solution 
-Please implement your solution as a simple app using the main technology* common for the position you're applying for and submit your code in a Git repository on GitHub, Bitbucket or similar. Bonus points for having a clean commit history (and other things one usually expects in clean repository) and sending us the last change as a pull request. 
-*Android devs would write an Android app in Java or Kotlin, iOS devs an app in Objective-C or Swift, server-backend devs a Ruby on Rails app, and so forth. 
+## Deliverables we expect:
+* URL where the game can be accessed and played (use any platform of your preference: heroku.com, aws.amazon.com, etc)
+* Code in a public Github repo
+* README file with the decisions taken and important notes
 
-## Code Review Interview 
+# Time Spent
+You do not need to fully complete the challenge. We suggest not to spend more than 5 hours total, which can be done over the course of 2 days.  Please make commits as often as possible so we can see the time you spent and please do not make one commit.  We will evaluate the code and time spent.
+ 
+What we want to see is how well you handle yourself given the time you spend on the problem, how you think, and how you prioritize when time is insufficient to solve everything.
 
-After you submit your solution, we'll invite you to visit us at TenTen for a code review interview. Please bring your laptop as we'll ask you to walk us through your code and explain how it works. TenTen engineers will ask you questions about your code, so be ready. Remember that the code review is not just a chance for us to see how well you communicate technical ideas and how solid your computer science background is, but at the same time, a great chance for you to meet the engineers you'll be working with, what we care about, and whether we're smart enough for you to want to work with us. So test us back! 
+As soon as you have submitted your solution, we will review the code.
+ 
+Reply to ALL when you are finished. 
+
+
