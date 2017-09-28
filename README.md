@@ -1,17 +1,3 @@
-# Backend test
-
-## Purpose 
-
-The assignment is deliberately not very precise and does not have a single correct solution. We're not looking for you to come up with any specific solution but are more interested to see how you interpret the assignment, what simplifying assumptions you make given the short time you have to work on it, how you architect your app, and what your coding style is. If in doubt as to which direction you should go, send us a quick note and ask (big bonus points for clarifying before jumping into coding!). Bonus points for doing proper error handling, adding unit tests, and commenting your code. The app should run and solve the problem, but no need to finish everything. Add TODOs and FIXMEs in places where you cut a corner for expediency but know a production ready version would need refactoring, additional tests or handling of certain edge cases that you know or suspect to exist but don't handle yet. Or, after you finish your first implementation and realize the architecture is not what it should have been. In that case don't waste time refactoring, but explain to us the problems you see and your proposed fix. 
-
-## Submission of Solution 
-Please implement your solution as a simple app using the main technology* common for the position you're applying for and submit your code in a Git repository on GitHub, Bitbucket or similar. Bonus points for having a clean commit history (and other things one usually expects in clean repository) and sending us the last change as a pull request. 
-*Android devs would write an Android app in Java or Kotlin, iOS devs an app in Objective-C or Swift, server-backend devs a Ruby on Rails app, and so forth. 
-
-## Code Review Interview 
-
-After you submit your solution, we'll invite you to visit us at TenTen for a code review interview. Please bring your laptop as we'll ask you to walk us through your code and explain how it works. TenTen engineers will ask you questions about your code, so be ready. Remember that the code review is not just a chance for us to see how well you communicate technical ideas and how solid your computer science background is, but at the same time, a great chance for you to meet the engineers you'll be working with, what we care about, and whether we're smart enough for you to want to work with us. So test us back! 
-
 # Computer simulator 
 
 We want you to build a computer simulator that supports executing: 
@@ -24,7 +10,7 @@ print(1009) # prints 1009
 print_tenten() # prints 1010
 ```
 
-# Instructions 
+## Instructions 
 
 * `MULT`: Pop the 2 arguments from the stack, multiply them and push the result back to the stack 
 * `CALL addr`: Set the program counter (PC) to `addr`
@@ -33,7 +19,7 @@ print_tenten() # prints 1010
 * `PRINT`: Pop value from stack and print it 
 * `PUSH arg`: Push argument to the stack 
 
-# Interface 
+## Interface 
 
 The code should execute against: 
 
@@ -53,14 +39,53 @@ def main
   computer.insert("PUSH", 101).insert("PUSH", 10).insert("CALL", PRINT_TENTEN_BEGIN)
   # Stop the program
   computer.insert("STOP")
+  # Execute the program
   computer.set_address(MAIN_BEGIN).execute()
 end
 main() 
 ```
 
-# The Stack 
-
 This is what the stack should look like before the program gets executed. 
 
 ![Image of The Stack](https://github.com/deviget/backend-test/blob/master/Stack.png)
- 
+
+## API Interface 
+
+The code should execute against these HTTP requests
+
+```
+# Create new computer with a stack of 100 addresses
+curl -XPOST -d"{\"stack\":100}" you-app-server/v1/computers
+# Instructions for the print_tenten function
+curl -XPATCH you-app-server/v1/computers/{computer-id}/addresses/50
+curl -XPOST you-app-server/v1/computers/{computer-id}/ops/MULT
+curl -XPOST you-app-server/v1/computers/{computer-id}/ops/PRINT
+curl -XPOST you-app-server/v1/computers/{computer-id}/ops/RET
+# The start of the main function
+curl -XPATCH you-app-server/v1/computers/{computer-id}/addresses/0
+curl -XPOST -d"{\"arg\":1009}"you-app-server/v1/computers/{computer-id}/ops/PUSH
+curl -XPOST you-app-server/v1/computers/{computer-id}/ops/PRINT
+# Return address for when print_tenten function finishes
+curl -XPOST -d"{\"arg\":6}"you-app-server/v1/computers/{computer-id}/ops/PUSH
+# Setup arguments and call print_tenten
+curl -XPOST -d"{\"arg\":101}"you-app-server/v1/computers/{computer-id}/ops/PUSH
+curl -XPOST -d"{\"arg\":10}"you-app-server/v1/computers/{computer-id}/ops/PUSH
+curl -XPOST -d"{\"addr\":50}"you-app-server/v1/computers/{computer-id}/ops/CALL
+# Stop the program
+curl -XPOST you-app-server/v1/computers/{computer-id}/ops/STOP
+# Execute the program
+curl -XPATCH you-app-server/v1/computers/{computer-id}/addresses/0
+curl -XPOST you-app-server/v1/computers/{computer-id}/execution
+```
+
+## Purpose 
+
+The assignment is deliberately not very precise and does not have a single correct solution. We're not looking for you to come up with any specific solution but are more interested to see how you interpret the assignment, what simplifying assumptions you make given the short time you have to work on it, how you architect your app, and what your coding style is. If in doubt as to which direction you should go, send us a quick note and ask (big bonus points for clarifying before jumping into coding!). Bonus points for doing proper error handling, adding unit tests, and commenting your code. The app should run and solve the problem, but no need to finish everything. Add TODOs and FIXMEs in places where you cut a corner for expediency but know a production ready version would need refactoring, additional tests or handling of certain edge cases that you know or suspect to exist but don't handle yet. Or, after you finish your first implementation and realize the architecture is not what it should have been. In that case don't waste time refactoring, but explain to us the problems you see and your proposed fix. 
+
+## Submission of Solution 
+Please implement your solution as a simple app using the main technology* common for the position you're applying for and submit your code in a Git repository on GitHub, Bitbucket or similar. Bonus points for having a clean commit history (and other things one usually expects in clean repository) and sending us the last change as a pull request. 
+*Android devs would write an Android app in Java or Kotlin, iOS devs an app in Objective-C or Swift, server-backend devs a Ruby on Rails app, and so forth. 
+
+## Code Review Interview 
+
+After you submit your solution, we'll invite you to visit us at TenTen for a code review interview. Please bring your laptop as we'll ask you to walk us through your code and explain how it works. TenTen engineers will ask you questions about your code, so be ready. Remember that the code review is not just a chance for us to see how well you communicate technical ideas and how solid your computer science background is, but at the same time, a great chance for you to meet the engineers you'll be working with, what we care about, and whether we're smart enough for you to want to work with us. So test us back! 
