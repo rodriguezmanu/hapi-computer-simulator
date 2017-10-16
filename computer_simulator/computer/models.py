@@ -14,6 +14,6 @@ class Computer(models.Model):
 class Register(models.Model):
 
     address = models.IntegerField()
-    value1 = models.CharField(max_length=50)
-    value2 = models.IntegerField()
+    value1 = models.CharField(max_length=50, null=True)
+    value2 = models.IntegerField(null=True)
     computer = models.ForeignKey(Computer)
