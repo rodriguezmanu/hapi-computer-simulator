@@ -10,6 +10,13 @@ class Computer(models.Model):
     program_counter = models.IntegerField(default=0)
     computation_ended = models.BooleanField(default=False)
 
+    @staticmethod
+    def create(size):
+        computer = Computer.objects.create()
+        for x in range(size):
+            Register.objects.create(address=x, computer=computer)
+        return computer
+
 
 class Register(models.Model):
 
