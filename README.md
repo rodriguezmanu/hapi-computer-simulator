@@ -2,6 +2,11 @@
 
 We ask that you complete the following challenge to evaluate your development skills. Please use the programming language and framework discussed during your interview to accomplish the following task.
 
+## Forking Procedures
+
+1.  Fork the repo to your own github account
+2.  When you have code ready to be review submit a pull request
+
 ## We want you to build a computer simulator that supports executing: 
 
 ```
@@ -91,11 +96,6 @@ The following is a list of items (prioritized from most important to least impor
 * Implement a documented RESTful API for the app
 * Implement an SDK client for the API implemented above. Ideally, in a different language, of your preference, to the one used for the API
 * Unit Testing
-
-## Forking Procedures
-
-1.  Fork the repo to your own github account
-2.  When you have code ready to be review submit a pull request
 
 ## Deliverables we expect:
 
