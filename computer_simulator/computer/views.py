@@ -64,3 +64,13 @@ def insert(request, computer_id, operation):
         computer.save()
 
         return Response(status=status.HTTP_200_OK)
+
+
+@api_view(['POST'])
+def execute(request, computer_id):
+    """
+    Execute the computation.
+    """
+    computer = get_object_or_404(Computer, id=computer_id)
+    output = computer.execute()
+    return Response(output, status=status.HTTP_200_OK)
