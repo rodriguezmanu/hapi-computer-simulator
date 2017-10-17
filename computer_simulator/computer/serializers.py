@@ -19,3 +19,9 @@ class ComputerSerializer(serializers.Serializer):
 class PointerSerializer(serializers.Serializer):
 
     addr = serializers.IntegerField(write_only=True)
+
+
+class InsertSerializer(serializers.Serializer):
+
+    arg = serializers.IntegerField(write_only=True, required=False)
+    addr = serializers.IntegerField(write_only=True, required=False)

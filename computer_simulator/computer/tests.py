@@ -40,3 +40,74 @@ class SearchLibrosTestCase(TestCase):
         url = reverse('set_pointer', kwargs={'computer_id': 1})
         response = self.client.patch(url, {'addr': 50})
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+
+    def test_insert(self):
+        computer = Computer.create(100)
+        computer.stack_pointer = computer.program_counter = 50
+        computer.save()
+
+        # insert MULT
+        url = reverse('insert', kwargs={'computer_id': computer.id, 'operation': 'MULT'})
+        response = self.client.post(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        computer.refresh_from_db()
+        register = computer.register_set.get(address=50)
+        self.assertEqual(register.value1, 'MULT')
+        self.assertIsNone(register.value2)
+        self.assertEqual(computer.stack_pointer, 51)
+
+        # insert PRINT
+        url = reverse('insert', kwargs={'computer_id': computer.id, 'operation': 'PRINT'})
+        response = self.client.post(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        computer.refresh_from_db()
+        register = computer.register_set.get(address=51)
+        self.assertEqual(register.value1, 'PRINT')
+        self.assertIsNone(register.value2)
+        self.assertEqual(computer.stack_pointer, 52)
+
+        # insert RET
+        url = reverse('insert', kwargs={'computer_id': computer.id, 'operation': 'RET'})
+        response = self.client.post(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+        computer.refresh_from_db()
+        register = computer.register_set.get(address=52)
+        self.assertEqual(register.value1, 'RET')
+        self.assertIsNone(register.value2)
+        self.assertEqual(computer.stack_pointer, 53)
+
+    def test_insert_push(self):
+        computer = Computer.create(100)
+        computer.save()
+
+        # insert PUSH with argument in arg
+        url = reverse('insert', kwargs={'computer_id': computer.id, 'operation': 'PUSH'})
+        response = self.client.post(url, {'arg': 1009})
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        computer.refresh_from_db()
+        register = computer.register_set.get(address=0)
+        self.assertEqual(register.value1, 'PUSH')
+        self.assertEqual(register.value2, 1009)
+
+    def test_insert_call(self):
+        computer = Computer.create(100)
+        computer.save()
+
+        # insert CALL with argument in addr
+        url = reverse('insert', kwargs={'computer_id': computer.id, 'operation': 'CALL'})
+        response = self.client.post(url, {'addr': 50})
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        computer.refresh_from_db()
+        register = computer.register_set.get(address=0)
+        self.assertEqual(register.value1, 'CALL')
+        self.assertEqual(register.value2, 50)
+
+    def test_insert_invalid_operation(self):
+        computer = Computer.create(100)
+        computer.save()
+
+        # insert invalid operation
+        url = reverse('insert', kwargs={'computer_id': computer.id, 'operation': 'IVLD'})
+        response = self.client.post(url, {'addr': 50})
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
