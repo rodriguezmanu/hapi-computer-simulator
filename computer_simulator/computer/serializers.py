@@ -14,3 +14,8 @@ class ComputerSerializer(serializers.Serializer):
     def save(self):
         size = self.validated_data['stack']
         return Computer.create(size)
+
+
+class PointerSerializer(serializers.Serializer):
+
+    addr = serializers.IntegerField(write_only=True)

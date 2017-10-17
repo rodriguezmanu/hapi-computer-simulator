@@ -26,3 +26,17 @@ class SearchLibrosTestCase(TestCase):
 
         self.assertEqual(Computer.objects.count(), 1)
         self.assertEqual(Register.objects.count(), 100)
+
+    def test_set_pointer(self):
+        computer = Computer.create(100)
+        url = reverse('set_pointer', kwargs={'computer_id': computer.id})
+        response = self.client.patch(url, {'addr': 50})
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        computer.refresh_from_db()
+        self.assertEqual(computer.stack_pointer, 50)
+        self.assertEqual(computer.program_counter, 50)
+
+    def test_set_pointer_invalid_computer(self):
+        url = reverse('set_pointer', kwargs={'computer_id': 1})
+        response = self.client.patch(url, {'addr': 50})
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
