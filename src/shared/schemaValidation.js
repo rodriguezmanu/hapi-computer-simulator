@@ -1,3 +1,5 @@
+'use strict';
+
 const Joi = require('Joi');
 
 const options = ['MULT', 'CALL', 'RET', 'STOP', 'PRINT', 'PUSH'];
@@ -12,7 +14,6 @@ module.exports.schema = {
     lengthRequired: Joi
                         .number()
                         .min(0)
-                        .positive()
                         .integer()
                         .required(),
     lengthOptional: Joi

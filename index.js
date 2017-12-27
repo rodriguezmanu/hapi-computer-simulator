@@ -17,10 +17,7 @@ server.connection({
 });
 
 server.inject({
-    url: 'localhost',
-    headers: {
-        'Content-Type': 'application/json'
-    }
+    url: 'localhost'
 });
 
 

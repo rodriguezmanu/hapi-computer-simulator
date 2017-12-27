@@ -1,3 +1,10 @@
+'use strict';
+
+const Computer = require('./../shared/computer');
+const Stack = require('./../shared/stack');
+
+Stack.create();
+
 /**
  * Getting started new computers
  * @param {Object} request
@@ -6,7 +13,12 @@
 module.exports.newComputers = function(request, reply) {
     const { stack } = request.payload;
 
-    return reply(stack);
+    Computer.createComputer(stack);
+    Stack.add(Computer);
+
+    return reply({
+        result: 'Computer created'
+    });
 };
 
 /**
@@ -18,7 +30,13 @@ module.exports.stackPointer = function(request, reply) {
     const { id } = request.params;
     const { addr } = request.payload;
 
-    return reply({ id, addr });
+    const computer = Stack.getRow(id);
+
+    computer.setPointer(addr);
+
+    return reply({
+        result: 'Pointer created'
+    });
 };
 
 /**
@@ -31,7 +49,25 @@ module.exports.insertOptions = function(request, reply) {
     const { option } = request.params;
     const { arg } = request.payload;
 
-    return reply({ id, option, arg });
+    if ((option === 'CALL' || option === 'PUSH') && arg === undefined) {
+        return reply({
+            result: 'PUSH and CALL need arg'
+        });
+    }
+
+    if ((option !== 'CALL' && option !== 'PUSH') && arg !== undefined) {
+        return reply({
+            result: 'STOP, RET, MULT or PRINT does not need arg'
+        });
+    }
+
+    const computer = Stack.getRow(id);
+
+    computer.insertOptions(option, arg);
+
+    return reply({
+        result: 'Insert ops added'
+    });
 };
 
 /**
@@ -42,5 +78,13 @@ module.exports.insertOptions = function(request, reply) {
 module.exports.exec = function(request, reply) {
     const { id } = request.params;
 
-    return reply(id);
+    const computer = Stack.getRow(id);
+
+    console.log(computer);
+    const results = computer.exec();
+    console.log(results);
+
+    return reply({
+        result: `Exec results: ${results}`
+    });
 };
