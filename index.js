@@ -5,7 +5,6 @@ const Inert = require('inert');
 const Vision = require('vision');
 const HapiSwagger = require('hapi-swagger');
 const Pack = require('./package');
-const BodyParser = require('hapi-bodyparser');
 
 const ComputersRouter = require('./src/routers/computers.router');
 
@@ -13,7 +12,8 @@ const server = new Hapi.Server();
 
 server.connection({
     host: process.env.IP || 'localhost',
-    port: process.env.PORT || 3000
+    port: process.env.PORT || 3000,
+    routes: { cors: true }
 });
 
 server.inject({
