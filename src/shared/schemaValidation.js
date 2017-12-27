@@ -1,6 +1,6 @@
 'use strict';
 
-const Joi = require('Joi');
+const Joi = require('joi');
 
 const options = ['MULT', 'CALL', 'RET', 'STOP', 'PRINT', 'PUSH'];
 
