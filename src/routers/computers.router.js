@@ -71,6 +71,16 @@ exports.register = function(server, options, next) {
         }
     });
 
+    server.route({
+        method: 'POST',
+        path: '/execScript',
+        config: {
+            handler: Computers.execCurls,
+            description: 'Execute curl script',
+            tags: ['api', 'computers']
+        }
+    });
+
     return next();
 };
 

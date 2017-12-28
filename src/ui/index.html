@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Computer Simulator</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.1/angular.js"></script>
+    <script src="script.js"></script>
+</head>
+
+<body ng-app="app" style="text-align: center">
+    <h1>COMPUTER SIMULATOR</h1>
+    <div ng-controller="appController as ctlr">
+        <button ng-click="ctlr.submit()">Send</button>
+        <pre ng-repeat="item in ctlr.response">
+            {{ item.result }}
+            <hr>
+        </pre>
+    </div>
+</body>
+
+</html>

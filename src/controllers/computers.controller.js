@@ -2,6 +2,7 @@
 
 const Computer = require('./../shared/computer');
 const Stack = require('./../shared/stack');
+const exec = require('child_process').exec;
 
 Stack.create();
 
@@ -17,7 +18,7 @@ module.exports.newComputers = function(request, reply) {
     Stack.add(Computer);
 
     return reply({
-        result: 'Computer created'
+        result: `Computer created: stack ${stack}`
     });
 };
 
@@ -35,7 +36,7 @@ module.exports.stackPointer = function(request, reply) {
     computer.setPointer(addr);
 
     return reply({
-        result: 'Pointer created'
+        result: `Pointer created to: ${addr} computer ${id}`
     });
 };
 
@@ -66,7 +67,7 @@ module.exports.insertOptions = function(request, reply) {
     computer.insertOptions(option, arg);
 
     return reply({
-        result: 'Insert ops added'
+        result: `Insert ops added ${option}:${arg}`
     });
 };
 
@@ -77,14 +78,29 @@ module.exports.insertOptions = function(request, reply) {
  */
 module.exports.exec = function(request, reply) {
     const { id } = request.params;
-
     const computer = Stack.getRow(id);
-
-    console.log(computer);
     const results = computer.exec();
-    console.log(results);
 
     return reply({
         result: `Exec results: ${results}`
+    });
+};
+
+/**
+ * Execute main script curls for ui
+ * @param {Object} request
+ * @param {Object} reply
+ */
+module.exports.execCurls = function(request, reply) {
+    const script = exec('./script.bash', (error, stdout, stderr) => {
+        if (error !== null) {
+            console.log(`exec error: ${error}`);
+        }
+
+        // parse result script in json
+        let results = stdout.replace(/}{/g, '},{');
+        results = '[' + results + ']';
+
+        return reply(JSON.parse(results));
     });
 };
