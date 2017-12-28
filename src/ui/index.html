@@ -11,6 +11,25 @@
 <body ng-app="app" style="text-align: center">
     <h1>COMPUTER SIMULATOR</h1>
     <div ng-controller="appController as ctlr">
+        <div ng-if="!ctlr.response">
+            <h3>Script to exec</h3>
+            <pre style="text-align: left;">
+                curl -XPATCH -d'{"addr: 50"}' you-app-server/v1/computers/{computer-id}/stack/pointer
+                curl -XPOST you-app-server/v1/computers/{computer-id}/stack/insert/MULT
+                curl -XPOST you-app-server/v1/computers/{computer-id}/stack/insert/PRINT
+                curl -XPOST you-app-server/v1/computers/{computer-id}/stack/insert/RET
+                curl -XPATCH -d'{"addr: 0"}' you-app-server/v1/computers/{computer-id}/stack/pointer
+                curl -XPOST -d'{"arg":1009}' you-app-server/v1/computers/{computer-id}/stack/insert/PUSH
+                curl -XPOST you-app-server/v1/computers/{computer-id}/stack/insert/PRINT
+                curl -XPOST -d'{"arg":6}' you-app-server/v1/computers/{computer-id}/stack/insert/PUSH
+                curl -XPOST -d'{"arg":101}' you-app-server/v1/computers/{computer-id}/stack/insert/PUSH
+                curl -XPOST -d'{"arg":10}' you-app-server/v1/computers/{computer-id}/stack/insert/PUSH
+                curl -XPOST -d'{"addr":50}' you-app-server/v1/computers/{computer-id}/stack/insert/CALL
+                curl -XPOST you-app-server/v1/computers/{computer-id}/stack/insert/STOP
+                curl -XPATCH -d'{"addr":0}' you-app-server/v1/computers/{computer-id}/stack/pointer
+                curl -XPOST you-app-server/v1/computers/{computer-id}/exec
+            </pre>
+        </div>
         <button ng-click="ctlr.submit()">Send</button>
         <pre ng-repeat="item in ctlr.response">
             {{ item.result }}
