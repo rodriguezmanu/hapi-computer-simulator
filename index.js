@@ -11,8 +11,7 @@ const ComputersRouter = require('./src/routers/computers.router');
 const server = new Hapi.Server();
 
 server.connection({
-    host: process.env.IP || 'localhost',
-    port: process.env.PORT || 3000,
+    port: ~~process.env.PORT || 3000,
     routes: { cors: true }
 });
 
