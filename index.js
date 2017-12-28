@@ -29,9 +29,9 @@ const options = {
 
 server.register(
     [
-        ComputersRouter,
         Inert,
         Vision,
+        ComputersRouter,
         {
             register: HapiSwagger,
             options: options

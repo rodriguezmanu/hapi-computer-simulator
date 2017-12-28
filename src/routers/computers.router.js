@@ -81,6 +81,18 @@ exports.register = function(server, options, next) {
         }
     });
 
+    server.route({
+        method: 'GET',
+        path: '/{param*}',
+        handler: {
+            directory: {
+                path: 'src/ui/',
+                redirectToSlash: true,
+                index: true
+            }
+        }
+    });
+
     return next();
 };
 

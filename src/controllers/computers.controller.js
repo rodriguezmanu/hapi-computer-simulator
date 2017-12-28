@@ -66,8 +66,10 @@ module.exports.insertOptions = function(request, reply) {
 
     computer.insertOptions(option, arg);
 
+    const replyText = (arg) ? `${option}:${arg}` : option;
+
     return reply({
-        result: `Insert ops added ${option}:${arg}`
+        result: `Insert ops added ${replyText}`
     });
 };
 
