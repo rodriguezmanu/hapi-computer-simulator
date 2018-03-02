@@ -1,6 +1,6 @@
 # Computer simulator
 
-## Deployed
+## URL
 https://app-computer-simulator.herokuapp.com/
 
 ## Documentation
@@ -8,10 +8,8 @@ https://app-computer-simulator.herokuapp.com/documentation
 
 ## Run
 $ npm i
-$ node .
 
-## Time
-~6hs
+$ node .
 
 ## Tech
 * Hapijs
